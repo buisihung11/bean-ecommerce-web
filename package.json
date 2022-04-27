@@ -12,7 +12,9 @@
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
     "test-all": "yarn check-format && yarn lint && yarn check-types && yarn build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint:eslint": "eslint --ext .ts,.tsx ./src",
+    "lint:fix": "eslint --fix --ext .ts,.tsx ./src"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
@@ -62,7 +64,7 @@
     "@types/react-star-rating-component": "^1.4.1",
     "autoprefixer": "^10.3.7",
     "eslint": "8.1.0",
-    "eslint-config-next": "11.1.2",
+    "eslint-config-next": "^12.1.5",
     "husky": "^7.0.4",
     "postcss": "^8.3.11",
     "prettier": "^2.4.1",
