@@ -47,7 +47,7 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = '' }) => {
           ))
         ) : (
           data?.pages?.map((page: any) => {
-            return page?.data?.map((product: Product) => (
+            return page?.data?.map((product: any) => (
               <ProductCard
                 key={`product--key-${product.id}`}
                 product={product}

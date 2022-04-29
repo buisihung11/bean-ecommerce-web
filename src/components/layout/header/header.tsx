@@ -67,7 +67,7 @@ const Header: React.FC = () => {
           />
           {/* End of search */}
 
-          <div className="flex flex-shrink-0 space-s-5 xl:space-s-7">
+          {/* <div className="flex flex-shrink-0 space-s-5 xl:space-s-7">
             <LanguageSwitcher />
             <CartButton className="hidden lg:flex" />
             <div className="hidden lg:flex items-center flex-shrink-0 ">
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
                 {t('text-account')}
               </AuthMenu>
             </div>
-          </div>
+          </div> */}
           {/* End of auth & lang */}
         </Container>
         {/* End of top part */}
@@ -99,14 +99,14 @@ const Header: React.FC = () => {
             />
             {/* End of main menu */}
 
-            {displaySearch && (
+            {/* {displaySearch && (
               <div className="sticky-search w-full absolute top-0 left-0 px-4 flex items-center justify-center h-full">
                 <Search
                   ref={siteSearchRef}
                   className="max-w-[780px] xl:max-w-[830px] 2xl:max-w-[1000px]"
                 />
               </div>
-            )}
+            )} */}
             {/* End of conditional search  */}
 
             <div className="ms-auto flex items-center flex-shrink-0">

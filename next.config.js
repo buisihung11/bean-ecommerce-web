@@ -13,4 +13,7 @@ module.exports = withPWA({
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ['unideli.s3.amazonaws.com'],
+  },
 });

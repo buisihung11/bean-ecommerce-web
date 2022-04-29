@@ -37,7 +37,7 @@ const ProductBundleGrid: FC<ProductFeedProps> = ({
               {data?.pages?.map((page: any) => {
                 return (
                   <>
-                    {page?.data?.slice(0, 21)?.map((product: Product) => (
+                    {page?.data?.slice(0, 21)?.map((product: any) => (
                       <ProductCard
                         key={`product--key${product.id}`}
                         product={product}

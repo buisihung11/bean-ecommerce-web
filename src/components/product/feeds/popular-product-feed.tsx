@@ -17,7 +17,6 @@ const PopularProductFeed: FC<ProductFeedProps> = ({ className }) => {
       sectionHeading="text-popular-product"
       sectionSubHeading="text-fresh-grocery-items"
       className={className}
-      products={data}
       loading={isLoading}
       error={error?.message}
       limit={limit}

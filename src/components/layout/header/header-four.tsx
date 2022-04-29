@@ -51,7 +51,7 @@ const Header: React.FC = () => {
             className="hidden lg:flex md:ps-6 xl:ps-10"
           />
 
-          <div className="flex flex-shrink-0 space-s-5 xl:space-s-7 ms-auto">
+          {/* <div className="flex flex-shrink-0 space-s-5 xl:space-s-7 ms-auto">
             <LanguageSwitcher />
             <CartButton className="hidden lg:flex" />
             <div className="hidden lg:flex items-center flex-shrink-0 ">
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
                 {t('text-account')}
               </AuthMenu>
             </div>
-          </div>
+          </div> */}
         </Container>
       </div>
     </header>

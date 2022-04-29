@@ -1,6 +1,6 @@
 {
-  "name": "borobazar",
-  "version": "1.0.3",
+  "name": "bean-web-app",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "clean": "rimraf \"{.next,dist,build,out,node_modules}\"",

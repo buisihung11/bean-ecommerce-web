@@ -1,8 +1,9 @@
 import SectionHeader from '@components/common/section-header';
 import ProductCard from '@components/product/product-cards/product-card';
 import ProductCardLoader from '@components/ui/loaders/product-card-loader';
-import { Product } from '@framework/types';
+
 import Alert from '@components/ui/alert';
+import { Product } from 'src/types/product';
 
 interface ProductsProps {
   sectionHeading: string;
@@ -45,8 +46,11 @@ const ProductsGridBlock: React.FC<ProductsProps> = ({
             />
           ))
         ) : (
-          products?.map((product: any) => (
-            <ProductCard key={`${uniqueKey}-${product.id}`} product={product} />
+          products?.map((product: Product) => (
+            <ProductCard
+              key={`${uniqueKey}-${product.product_id}`}
+              product={product}
+            />
           ))
         )}
       </div>

@@ -17,41 +17,42 @@ import Seo from '@components/seo/seo';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import { API_ENDPOINTS } from '@framework/utils/api-endpoints';
-import { fetchCategories } from '@framework/category/get-all-categories';
 import { fetchBestSellerGroceryProducts } from '@framework/product/get-all-best-seller-grocery-products';
 import { fetchPopularProducts } from '@framework/product/get-all-popular-products';
 import { LIMITS } from '@framework/utils/limits';
+import ShopsPageContent from '@components/shops/shops-page-content';
 
 export default function Home() {
   return (
     <>
-      <Seo
+      {/* <Seo
         title="Grocery & Food Store React Template"
         description="Fastest E-commerce template built with React, NextJS, TypeScript, React-Query and Tailwind CSS."
         path="/"
-      />
-      <HeroBannerCard
+      /> */}
+      {/* <HeroBannerCard
         banner={heroBanner}
         className="hero-banner-six min-h-[400px] md:min-h-[460px] lg:min-h-[500px] xl:min-h-[650px] py-20 py:pt-24 mb-5 2xl:bg-center"
-      />
+      /> */}
       <Container>
-        <BundleGrid
+        {/* <BundleGrid
           className="mb-12 lg:mb-14 xl:mb-16 2xl:mb-20"
           data={bundle}
-        />
+        /> */}
         <CategoryGridBlock />
         <BestSellerGroceryProductFeed />
-        <BannerCard
+        {/* <BannerCard
           banner={banner}
           className="mb-12 lg:mb-14 xl:pb-3"
           effectActive={false}
         />
-        <PopularProductFeed />
+        <PopularProductFeed /> */}
       </Container>
-      <CollectionGrid
+      <ShopsPageContent />
+      {/* <CollectionGrid
         headingPosition="center"
         className="xl:pt-2 2xl:pt-4 3xl:pt-6 pb-1 lg:pb-0 mb-12 lg:mb-14 xl:mb-16 2xl:mb-20"
-      />
+      /> */}
       <DownloadApps />
     </>
   );
@@ -62,10 +63,10 @@ Home.Layout = Layout;
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(
-    [API_ENDPOINTS.CATEGORIES, { limit: LIMITS.CATEGORIES_LIMITS }],
-    fetchCategories
-  );
+  await queryClient.prefetchQuery([
+    API_ENDPOINTS.CATEGORIES,
+    { limit: LIMITS.CATEGORIES_LIMITS },
+  ]);
   await queryClient.prefetchQuery(
     [
       API_ENDPOINTS.BEST_SELLER_GROCERY_PRODUCTS,

@@ -99,7 +99,7 @@ const Header: React.FC = () => {
             >
               <SearchIcon className="w-[22px] h-[22px] text-skin-base text-opacity-40" />
             </button>
-            {/* End of search handler btn */}
+            End of search handler btn
             <LanguageSwitcher />
             <CartButton className="hidden lg:flex" />
             <div className="hidden lg:flex items-center flex-shrink-0 ">
@@ -118,7 +118,6 @@ const Header: React.FC = () => {
           </div>
           {/* End of auth & lang */}
         </Container>
-        {/* End of top part */}
       </div>
     </header>
   );
