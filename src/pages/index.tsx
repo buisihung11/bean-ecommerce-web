@@ -14,17 +14,58 @@ import BannerCard from '@components/cards/banner-card';
 import { bundleDataTwo as bundle } from '@framework/static/bundle';
 import { GetStaticProps } from 'next';
 import Seo from '@components/seo/seo';
-import { QueryClient } from 'react-query';
+import { QueryClient, useQuery } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import { API_ENDPOINTS } from '@framework/utils/api-endpoints';
 import { fetchBestSellerGroceryProducts } from '@framework/product/get-all-best-seller-grocery-products';
 import { fetchPopularProducts } from '@framework/product/get-all-popular-products';
 import { LIMITS } from '@framework/utils/limits';
 import ShopsPageContent from '@components/shops/shops-page-content';
-
+import { useEffect, useState } from 'react';
+import http from '@framework/utils/http';
+import { Product } from 'src/types/product';
+import { useSessionStorage } from 'react-use';
+import HighlightedBar from '@components/common/highlighted-bar';
+import Image from '@components/ui/image';
+import Countdown from '@components/common/countdown';
 export default function Home() {
+  const [highlightedBar, setHighlightedBar] = useSessionStorage(
+    'borobazar-highlightedBar',
+    'false'
+  );
+  // const [filter, setFilter] = useState({
+  //   'category-id': null,
+  //   'supplier-id': null,
+  //   'time-slot': ['00:00:00', '22:30:00'],
+  // });
+
+  // const { data, isLoading } = useQuery(['products', filter], () =>
+  //   http
+  //     .get<{ data: Product[] }>(`/stores/1305/products`, { params: filter })
+  //     .then((res) => res.data.data)
+  // );
+  // console.log('filter :>> ', data);
   return (
     <>
+      <HighlightedBar>
+        <div className="flex items-center">
+          <div className="hidden sm:flex flex-shrink-0 items-center justify-center bg-skin-fill w-9 h-9 rounded-full me-2.5">
+            <Image
+              width={23}
+              height={23}
+              src="/assets/images/delivery-box.svg"
+              alt="Delivery Box"
+            />
+          </div>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: 'Thời gian nhận đơn',
+            }}
+          />
+        </div>
+        <Countdown date={Date.now() + 4000000 * 71} />
+      </HighlightedBar>
+
       {/* <Seo
         title="Grocery & Food Store React Template"
         description="Fastest E-commerce template built with React, NextJS, TypeScript, React-Query and Tailwind CSS."
@@ -47,13 +88,14 @@ export default function Home() {
           effectActive={false}
         />
         <PopularProductFeed /> */}
-      </Container>
-      <ShopsPageContent />
-      {/* <CollectionGrid
+
+        <ShopsPageContent />
+        {/* <CollectionGrid
         headingPosition="center"
         className="xl:pt-2 2xl:pt-4 3xl:pt-6 pb-1 lg:pb-0 mb-12 lg:mb-14 xl:mb-16 2xl:mb-20"
       /> */}
-      <DownloadApps />
+        <DownloadApps />
+      </Container>
     </>
   );
 }

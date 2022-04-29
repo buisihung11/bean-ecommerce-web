@@ -29,7 +29,11 @@ const CategoryCard: React.FC<Props> = ({ item, className }) => {
           }`}
         >
           <Image
-            src={categoryPlaceholder}
+            unoptimized={true}
+            src={
+              (item.pic_url == null ? '/icons/logo.png' : item.pic_url) ??
+              categoryPlaceholder
+            }
             alt={item.category_name || t('text-card-thumbnail')}
             width={178}
             height={178}
@@ -45,7 +49,10 @@ const CategoryCard: React.FC<Props> = ({ item, className }) => {
           }`}
         >
           <Image
-            src={categoryPlaceholder}
+            src={
+              (item.pic_url == null ? '/icons/logo.png' : item.pic_url) ??
+              categoryPlaceholder
+            }
             alt={item.category_name || t('text-card-thumbnail')}
             width={178}
             height={178}

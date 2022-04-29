@@ -11,10 +11,6 @@ interface ProductFeedProps {
 }
 
 const BestSellerGroceryProductFeed: FC<ProductFeedProps> = ({ className }) => {
-  // const { data, isLoading, error } = useBestSellerGroceryProductsQuery({
-  //   limit: LIMITS.BEST_SELLER_GROCERY_PRODUCTS_LIMITS,
-  // });
-
   const { data, isLoading } = useQuery(['products'], () =>
     http
       .get<{ data: Product[] }>(`/stores/1305/products`, {

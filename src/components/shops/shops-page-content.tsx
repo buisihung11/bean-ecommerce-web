@@ -6,6 +6,7 @@ import Heading from '@components/ui/heading';
 import { useQuery } from 'react-query';
 import { Supplier } from 'src/types/supplier';
 import http from '@framework/utils/http';
+import SectionHeader from '@components/common/section-header';
 
 const ShopsPageContent: React.FC = () => {
   const { t } = useTranslation('common');
@@ -24,9 +25,13 @@ const ShopsPageContent: React.FC = () => {
   return (
     <div className="pt-10 lg:pt-12 xl:pt-14 pb-14 lg:pb-16 xl:pb-20 px-4 md:px-8">
       <div className="w-full xl:max-w-[1490px] mx-auto">
-        <Heading variant="titleLarge" className="mb-4 lg:mb-6">
-          {t('text-all-shops')}
-        </Heading>
+        <div className="py:5">
+          <SectionHeader
+            sectionHeading="Danh sách cửa hàng"
+            // sectionSubHeading="text-favorite-different-categories"
+            headingPosition="center"
+          />
+        </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-5 xl:gap-6">
           {data?.map((item) => (
             <VendorCard key={item.id} shop={item} />

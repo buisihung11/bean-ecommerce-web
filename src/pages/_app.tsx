@@ -41,9 +41,9 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
         <ManagedUIContext>
           <>
             <DefaultSeo />
-            <Layout pageProps={pageProps}>
-              <Component {...pageProps} key={router.route} />
-            </Layout>
+            {/* <Layout pageProps={pageProps}> */}
+            <Component {...pageProps} key={router.route} />
+            {/* </Layout> */}
             <ToastContainer />
             <ManagedModal />
             <ManagedDrawer />

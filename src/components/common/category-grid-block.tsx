@@ -60,11 +60,13 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
 
   return (
     <div className={className}>
-      <SectionHeader
-        sectionHeading="Danh mục sản phẩm"
-        // sectionSubHeading="text-favorite-different-categories"
-        headingPosition="center"
-      />
+      <div className="py:5">
+        <SectionHeader
+          sectionHeading="Danh mục sản phẩm"
+          // sectionSubHeading="text-favorite-different-categories"
+          headingPosition="center"
+        />
+      </div>
       <div className="block 2xl:flex justify-center flex-wrap 3xl:-mx-3.5">
         {width! < 1536 ? (
           <Carousel
@@ -86,7 +88,7 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
                       item={category}
                       // href={{
                       //   pathname: ROUTES.SEARCH,
-                      //   query: { category: category.slug },
+                      //   query: { category: category.id },
                       // }}
                     />
                   </SwiperSlide>
@@ -110,7 +112,7 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
               item={category}
               // href={{
               //   pathname: ROUTES.SEARCH,
-              //   query: { category: category.slug },
+              //   query: { category: category.id },
               // }}
               className="flex-shrink-0 2xl:px-3.5 2xl:w-[12.5%] 3xl:w-1/9 mb-12"
             />

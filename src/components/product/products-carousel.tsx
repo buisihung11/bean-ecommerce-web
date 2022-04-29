@@ -1,6 +1,5 @@
 import SectionHeader from '@components/common/section-header';
 import ProductCard from '@components/product/product-cards/product-card';
-import { Product } from '@framework/types';
 import Carousel from '@components/ui/carousel/carousel';
 import { SwiperSlide } from '@components/ui/carousel/slider';
 import Alert from '@components/ui/alert';
@@ -10,6 +9,7 @@ import ProductCardLoader from '@components/ui/loaders/product-card-loader';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { getDirection } from '@utils/get-direction';
+import { Product } from '@framework/types';
 
 interface ProductsCarouselProps {
   sectionHeading: string;
@@ -99,12 +99,12 @@ const ProductsCarousel: React.FC<ProductsCarouselProps> = ({
               ))
             ) : (
               <>
-                {products?.map((product: any, idx) => (
+                {products?.map((product: Product, idx) => (
                   <SwiperSlide
                     key={`${uniqueKey}-${idx}`}
                     className="px-1.5 md:px-2 xl:px-2.5 py-4"
                   >
-                    <ProductCard product={product} />
+                    {/* <ProductCard product={product} /> */}
                   </SwiperSlide>
                 ))}
                 <SwiperSlide className="p-2.5 flex items-center justify-center">

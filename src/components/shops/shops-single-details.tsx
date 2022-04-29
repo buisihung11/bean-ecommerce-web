@@ -12,6 +12,8 @@ import ShopSidebarDrawer from '@components/shops/shop-sidebar-drawer';
 import AllProductFeed from '@components/product/feeds/all-products-feed';
 import { useTranslation } from 'next-i18next';
 import useWindowSize from '@utils/use-window-size';
+import { useQuery } from 'react-query';
+import http from '@framework/utils/http';
 
 const ShopsSingleDetails: React.FC = () => {
   const {
@@ -24,6 +26,12 @@ const ShopsSingleDetails: React.FC = () => {
   const { locale } = useRouter();
   const dir = getDirection(locale);
   const contentWrapperCSS = dir === 'ltr' ? { left: 0 } : { right: 0 };
+
+  // const { data, isLoading } = useQuery(['products'], () =>
+  //   http
+  //     .get<{ data: Product[] }>(`/stores/1305/products`, { params: filter })
+  //     .then((res) => res.data.data)
+  // );
 
   if (isLoading) return <p>Loading...</p>;
 

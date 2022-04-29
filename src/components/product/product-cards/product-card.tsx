@@ -76,10 +76,11 @@ const ProductCard: React.FC<ProductProps> = ({ product, className }) => {
       <div className="relative flex-shrink-0">
         <div className="flex overflow-hidden max-w-[230px] mx-auto transition duration-200 ease-in-out transform group-hover:scale-105 relative">
           <Image
-            src={productPlaceholder}
+            unoptimized={true}
+            src={product.pic_url == null ? 'icons/logo.png' : product.pic_url}
             alt={product.product_name || 'Product Image'}
             width={230}
-            height={200}
+            height={230}
             quality={100}
             className="object-cover bg-skin-thumbnail"
           />

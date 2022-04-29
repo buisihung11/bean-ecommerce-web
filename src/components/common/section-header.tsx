@@ -13,7 +13,7 @@ interface Props {
 const SectionHeader: React.FC<Props> = ({
   sectionHeading = 'text-section-title',
   sectionSubHeading,
-  className = 'pb-0.5 mb-5 xl:mb-6',
+  className = 'pb-0.5 mb-5 pt-5 xl:mb-6',
   headingPosition = 'left',
 }) => {
   const { t } = useTranslation('common');

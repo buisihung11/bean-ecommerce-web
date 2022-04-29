@@ -9,7 +9,7 @@ const data = {
   appButtons: [
     {
       id: 1,
-      slug: '/#',
+      slug: 'https://apps.apple.com/vn/app/beanoi/id1557833922',
       altText: 'button-app-store',
       appButton: '/assets/images/app-store.png',
       buttonWidth: 170,
@@ -17,7 +17,7 @@ const data = {
     },
     {
       id: 2,
-      slug: '/#',
+      slug: 'https://play.google.com/store/apps/details?id=com.unibean.unidelivery',
       altText: 'button-play-store',
       appButton: '/assets/images/play-store.png',
       buttonWidth: 170,
@@ -65,9 +65,9 @@ const DownloadApps: React.FC<Props> = ({ className = 'pt-1.5 md:pt-0' }) => {
         </div>
         <div className="hidden md:flex items-end ps-4 2xl:ps-0 md:max-w-[480px] lg:max-w-[540px] xl:max-w-auto -me-16 lg:-me-8 3xl:me-24">
           <Image
-            src={appImage}
+            src={'/icons/logo.png'}
             alt={t('text-app-thumbnail')}
-            width={597}
+            width={500}
             height={500}
           />
         </div>
