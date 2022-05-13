@@ -35,10 +35,10 @@ export default function Home() {
         className="min-h-[400px] md:min-h-[460px] lg:min-h-[500px] xl:min-h-[550px] 2xl:min-h-[650px] py-20 py:pt-24 mb-5"
       />
       <Container>
-        <BundleGrid
+        {/* <BundleGrid
           data={bundle}
           className="mb-12 lg:mb-14 xl:mb-16 2xl:mb-20"
-        />
+        /> */}
         <CategoryGridListBlock />
         <BestSellerGroceryProductFeed />
         <BannerGrid

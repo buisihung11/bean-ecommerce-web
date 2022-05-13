@@ -6,14 +6,19 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import Heading from '@components/ui/heading';
+import { useQuery } from 'react-query';
+import http from '@framework/utils/http';
+import { Supplier } from 'src/types/supplier';
 
 export const BrandFilter = () => {
   const { t } = useTranslation('common');
   const router = useRouter();
   const { pathname, query } = router;
-  const { data, isLoading, error } = useBrandsQuery({
-    limit: 10,
-  });
+  const { data, isLoading } = useQuery(['suppliers'], () =>
+    http
+      .get<{ data: Supplier[] }>(`/stores/1305/suppliers`)
+      .then((res) => res.data.data)
+  );
   const selectedBrands = React.useMemo(
     () => (query?.brand ? (query.brand as string).split(',') : []),
     [query?.brand]
@@ -24,7 +29,6 @@ export const BrandFilter = () => {
   }, [selectedBrands]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>{error.message}</p>;
 
   function handleItemClick(e: React.FormEvent<HTMLInputElement>): void {
     const { value } = e.currentTarget;
@@ -47,35 +51,34 @@ export const BrandFilter = () => {
       { scroll: false }
     );
   }
-  const items = data?.brands?.data;
 
   return (
     <div className="block">
-      <Heading className="mb-5 -mt-1">{t('text-brands')}</Heading>
+      <Heading className="mb-5 -mt-1">Cửa hàng</Heading>
       <div className="p-5 flex flex-col border border-skin-base rounded-md">
-        {items?.slice(0, 3)?.map((item: any) => (
+        {data?.slice(0, 3)?.map((item: Supplier) => (
           <CheckBox
             key={`${item.name}-key-${item.id}`}
             label={item.name}
             name={item.name.toLowerCase()}
-            checked={formState.includes(item.slug)}
-            value={item.slug}
+            checked={formState.includes(`${item.id}`)}
+            value={item.id}
             onChange={handleItemClick}
           />
         ))}
-        {items!.length > 3 && (
+        {data!.length > 3 && (
           <div className="w-full">
             <Disclosure>
               {({ open }) => (
                 <>
                   <Disclosure.Panel className="pt-4 pb-2">
-                    {items?.slice(3, items.length).map((item: any) => (
+                    {data?.slice(3, data.length).map((item: Supplier) => (
                       <CheckBox
                         key={`${item.name}-key-${item.id}`}
                         label={item.name}
                         name={item.name.toLowerCase()}
-                        checked={formState.includes(item.slug)}
-                        value={item.slug}
+                        checked={formState.includes(`${item.id}`)}
+                        value={item.id}
                         onChange={handleItemClick}
                       />
                     ))}

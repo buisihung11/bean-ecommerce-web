@@ -14,44 +14,46 @@ import { useTranslation } from 'next-i18next';
 import useWindowSize from '@utils/use-window-size';
 import { useQuery } from 'react-query';
 import http from '@framework/utils/http';
+import { Supplier } from 'src/types/supplier';
 
 const ShopsSingleDetails: React.FC = () => {
   const {
     query: { slug },
   } = useRouter();
   const { t } = useTranslation('common');
-  const { data, isLoading } = useShopQuery(slug as string);
+  // const { data, isLoading } = useShopQuery(slug as string);
   const { openShop, displayShop, closeShop } = useUI();
   const { width } = useWindowSize();
   const { locale } = useRouter();
   const dir = getDirection(locale);
   const contentWrapperCSS = dir === 'ltr' ? { left: 0 } : { right: 0 };
 
-  // const { data, isLoading } = useQuery(['products'], () =>
-  //   http
-  //     .get<{ data: Product[] }>(`/stores/1305/products`, { params: filter })
-  //     .then((res) => res.data.data)
-  // );
+  const { data, isLoading } = useQuery(['suppliers'], () =>
+    http
+      .get<{ data: Supplier[] }>(`/stores/1305/suppliers`)
+      .then((res) => res.data.data)
+  );
+
+  const supplier = data?.find((item) => item.id == Number(slug));
 
   if (isLoading) return <p>Loading...</p>;
 
   return (
     <>
-      <div
+      {/* <div
         className="flex justify-center h-56 md:h-64 w-full bg-cover bg-no-repeat bg-center"
         style={{
           backgroundImage: `url(${
-            width! <= 480
-              ? data?.cover_image?.original!
-              : data?.cover_image?.thumbnail!
+            width! <= 480 ? supplier?.image_url! : supplier?.image_url!
           })`,
         }}
-      />
+      /> */}
       <div className="flex lg:hidden items-center px-4 md:px-6 py-4 border-b border-skin-base mb-7">
         <div className="flex flex-shrink-0">
           <Image
-            src={data?.logo?.original!}
-            alt={data?.name}
+            unoptimized
+            src={supplier?.image_url!}
+            alt={supplier?.name}
             width={66}
             height={66}
             className="rounded-md"
@@ -59,7 +61,7 @@ const ShopsSingleDetails: React.FC = () => {
         </div>
         <div className="ps-4">
           <h2 className="text-skin-base text-15px font-semibold">
-            {data?.name}
+            {supplier?.name}
           </h2>
           <button
             className="font-medium text-sm block text-skin-primary transition-all hover:text-skin-muted"
@@ -76,7 +78,7 @@ const ShopsSingleDetails: React.FC = () => {
         >
           <div className="flex-shrink-0 hidden lg:block lg:w-80 xl:w-[350px] 2xl:w-96 lg:sticky lg:top-16 category-mobile-sidebar">
             <div className="border border-[#EFF2F4] shadow-vendorSidebar rounded-lg">
-              <ShopSidebar data={data} />
+              <ShopSidebar data={supplier} />
             </div>
           </div>
 
@@ -94,7 +96,7 @@ const ShopsSingleDetails: React.FC = () => {
         level={null}
         contentWrapperStyle={contentWrapperCSS}
       >
-        <ShopSidebarDrawer data={data} />
+        <ShopSidebarDrawer data={supplier} />
       </Drawer>
     </>
   );

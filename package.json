@@ -5,9 +5,9 @@
   "scripts": {
     "clean": "rimraf \"{.next,dist,build,out,node_modules}\"",
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
-    "build-with-export": "next build && next export",
+    "build": "next build",
+    "export": "next export",
     "lint": "next lint",
     "format": "prettier --write .",
     "check-types": "tsc --pretty --noEmit",
