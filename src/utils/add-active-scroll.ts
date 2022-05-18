@@ -4,6 +4,7 @@ export function addActiveScroll<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,
   topOffset: number = 80
 ) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const element = ref?.current;
     const listener = () => {

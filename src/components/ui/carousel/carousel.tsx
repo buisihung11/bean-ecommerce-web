@@ -25,6 +25,7 @@ type CarouselPropsType = {
   centeredSlides?: boolean;
   loop?: boolean;
   slidesPerColumn?: number;
+  slidesPerRow?: number;
   breakpoints?: {} | any;
   pagination?: {} | any;
   navigation?: {} | any;

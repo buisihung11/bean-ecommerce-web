@@ -31,7 +31,7 @@ export default function Search() {
             <ShopFilters />
           </div>
           <div className="w-full lg:-ms-2 xl:-ms-8 lg:-mt-1">
-            <SearchTopBar />
+            {/* <SearchTopBar /> */}
             <ProductGrid />
           </div>
         </Element>

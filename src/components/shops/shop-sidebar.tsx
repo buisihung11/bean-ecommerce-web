@@ -18,9 +18,10 @@ import {
   IoCallOutline,
   IoGlobeOutline,
 } from 'react-icons/io5';
+import { Supplier } from 'src/types/supplier';
 
 interface ShopSidebarProps {
-  data: any;
+  data?: Supplier;
 }
 
 const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
@@ -38,7 +39,8 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
       <div className="text-center w-full border-b border-gray-base pb-8 px-5 sm:px-8 lg:px-0 2xl:px-7">
         <div className="w-32 h-32 mx-auto">
           <Image
-            src={data?.logo?.original!}
+            unoptimized
+            src={data?.image_url!}
             alt={data?.name}
             width={128}
             height={128}
@@ -48,25 +50,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
         <Heading variant="titleLarge" className="mt-6 mb-1.5">
           {data?.name}
         </Heading>
-        <Text variant="small">
-          {descriptionState === true ? (
-            data?.description
-          ) : data?.description.split(' ').length >= 13 ? (
-            <>
-              {data?.description.split(' ').slice(0, 13).join(' ')}
-              {'..'}
-              <span
-                role="button"
-                className="text-skin-primary ms-0.5 font-semibold block hover:text-skin-muted"
-                onClick={descriptionHandel}
-              >
-                {t('text-read-more')}
-              </span>
-            </>
-          ) : (
-            data?.description
-          )}
-        </Text>
+        {/* <Text variant="small">data</Text>
         <div className="flex items-center flex-wrap justify-center space-s-2 pt-4 mt-0.5">
           <FacebookShareButton url={shareUrl}>
             <FacebookIcon
@@ -89,7 +73,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
               className="transition-all hover:opacity-90"
             />
           </LinkedinShareButton>
-        </div>
+        </div> */}
       </div>
       <div className="space-y-6 py-7">
         <div className="flex items-start">
@@ -100,7 +84,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
             <h4 className="text-skin-base font-medium text-15px mb-1">
               {t('text-address')}:
             </h4>
-            <Text>{data?.address}</Text>
+            <Text>{data?.contact_person}</Text>
           </div>
         </div>
         <div className="flex items-start">
@@ -109,9 +93,9 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
           </div>
           <div className="-mt-1">
             <h4 className="text-skin-base font-medium text-15px mb-1">
-              {t('text-phone-number')}:
+              Số điện thoại :
             </h4>
-            <Text>{data?.phone}</Text>
+            <Text>{data?.phone_number}</Text>
           </div>
         </div>
         <div className="flex items-start">
@@ -124,10 +108,10 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
             </h4>
             <Text>
               <a
-                href={`https://${data?.website}`}
+                href={`https://unibean.net`}
                 className="text-[#0077E5] hover:text-skin-muted"
               >
-                {data?.website}
+                {data?.contact_person}
               </a>
             </Text>
           </div>

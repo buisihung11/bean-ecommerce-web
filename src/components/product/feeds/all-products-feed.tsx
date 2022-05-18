@@ -11,23 +11,37 @@ import cn from 'classnames';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { LIMITS } from '@framework/utils/limits';
-import { Product } from '@framework/types';
+import { useQuery } from 'react-query';
+import http from '@framework/utils/http';
+import { Product } from 'src/types/product';
 interface ProductFeedProps {
   element?: any;
   className?: string;
 }
 const AllProductFeed: FC<ProductFeedProps> = ({ element, className = '' }) => {
   const { t } = useTranslation('common');
-
-  const { query } = useRouter();
   const {
-    isFetching: isLoading,
-    isFetchingNextPage: loadingMore,
-    fetchNextPage,
-    hasNextPage,
-    data,
-    error,
-  } = useProductsQuery({ limit: LIMITS.PRODUCTS_LIMITS, ...query });
+    query: { slug },
+  } = useRouter();
+
+  // const { query } = useRouter();
+  // const {
+  //   isFetching: isLoading,
+  //   isFetchingNextPage: loadingMore,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   data,
+  //   error,
+  // } = useProductsQuery({ limit: LIMITS.PRODUCTS_LIMITS, ...query });
+
+  const { data, isLoading } = useQuery(['products'], () =>
+    http
+      .get<{ data: Product[] }>(`/stores/1305/suppliers/${slug}/products`, {
+        params: { 'time-slot': ['00:00:00', '22:30:00'] },
+      })
+      .then((res) => res.data.data)
+  );
+  console.log('products :>> ', data);
 
   const { openModal } = useModalAction();
 
@@ -38,7 +52,7 @@ const AllProductFeed: FC<ProductFeedProps> = ({ element, className = '' }) => {
   return (
     <div className={cn(className)}>
       <div className="flex items-center justify-between pb-0.5 mb-4 lg:mb-5 xl:mb-6">
-        <SectionHeader sectionHeading="All Products" className="mb-0" />
+        <SectionHeader sectionHeading="Danh sách món ăn" className="mb-0" />
         <div
           className="lg:hidden transition-all text-skin-primary -mt-1.5 font-semibold text-sm md:text-15px hover:text-skin-base"
           role="button"
@@ -47,43 +61,17 @@ const AllProductFeed: FC<ProductFeedProps> = ({ element, className = '' }) => {
           {t('text-categories')}
         </div>
       </div>
-      {error ? (
-        <Alert message={error?.message} />
+      {false ? (
+        <Alert message={'dâđ'} />
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 gap-3 md:gap-4 2xl:gap-5">
-          {isLoading && !data?.pages?.length ? (
-            Array.from({ length: LIMITS.PRODUCTS_LIMITS }).map((_, idx) => (
-              <ProductCardLoader
-                key={`product--key-${idx}`}
-                uniqueKey={`product--key-${idx}`}
-              />
-            ))
-          ) : (
-            <>
-              {data?.pages?.map((page: any, index) => {
-                return (
-                  <Fragment key={index}>
-                    {page?.data?.slice(0, 18)?.map((product: any) => (
-                      <ProductCard
-                        key={`product--key${product.id}`}
-                        product={product}
-                      />
-                    ))}
-                    {element && <div className="col-span-full">{element}</div>}
-                    {page?.data?.length! > 18 &&
-                      slice(page?.data, 18, page?.data?.length).map(
-                        (product: any) => (
-                          <ProductCard
-                            key={`product--key${product.id}`}
-                            product={product}
-                          />
-                        )
-                      )}
-                  </Fragment>
-                );
-              })}
-            </>
-          )}
+          {isLoading
+            ? Array.from({ length: 20 }).map((_, idx) => (
+                <ProductCardLoader key={idx} uniqueKey={idx} />
+              ))
+            : data?.map((product: Product) => (
+                <ProductCard key={product.product_id} product={product} />
+              ))}
         </div>
       )}
     </div>

@@ -10,16 +10,19 @@ import { Category } from 'src/types/category';
 
 interface Props {
   item: Category;
-  // href: LinkProps['href'];
+  href: LinkProps['href'];
   className?: string;
 }
 
-const CategoryCard: React.FC<Props> = ({ item, className }) => {
+const CategoryCard: React.FC<Props> = ({ item, href, className }) => {
   const { t } = useTranslation('common');
   const { locale } = useRouter();
   const dir = getDirection(locale);
   return (
-    <Link href={{}} className={cn('group block w-full text-center', className)}>
+    <Link
+      href={href}
+      className={cn('group block w-full text-center', className)}
+    >
       <div className="flex max-w-[178px] max-h-[178px] mb-3.5 xl:mb-4 mx-auto rounded-full overflow-hidden bg-skin-thumbnail">
         <div
           className={`flex flex-shrink-0 transition-all duration-700 w-full h-full transform scale-50 group-hover:scale-100 ${

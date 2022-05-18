@@ -60,6 +60,7 @@ const ProductCard: React.FC<ProductProps> = ({ product, className }) => {
   //   amount: product?.max_price ?? 0,
   //   currencyCode: 'USD',
   // });
+  console.log('product', product);
 
   function handlePopupView() {
     openModal('PRODUCT_VIEW', product);

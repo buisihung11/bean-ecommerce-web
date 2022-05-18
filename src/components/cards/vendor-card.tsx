@@ -16,8 +16,7 @@ const VendorCard: React.FC<VendorCardProps> = ({ shop }) => {
   const placeholderImage = `/assets/placeholder/products/product-grid.svg`;
   return (
     <Link
-      // href={`${ROUTES.SHOPS}/${shop.id}`}
-      href={{}}
+      href={`${ROUTES.SHOPS}/${shop.id}`}
       className="flex items-center px-5 xl:px-7 py-5 xl:py-7 border border-skin-base rounded-lg shadow-vendorCard cursor-pointer relative bg-white transition-all hover:shadow-vendorCardHover"
     >
       <div className="relative flex flex-shrink-0 items-center justify-center bg-skin-thumbnail rounded-full overflow-hidden w-16 xl:w-20 h-16 xl:h-20">

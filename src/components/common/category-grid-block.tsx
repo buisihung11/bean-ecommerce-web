@@ -19,20 +19,16 @@ interface CategoriesProps {
   className?: string;
 }
 const breakpoints = {
-  '2560': {
-    slidesPerView: 15,
-    spaceBetween: 24,
-  },
   '1440': {
-    slidesPerView: 13,
+    slidesPerView: 10,
     spaceBetween: 20,
   },
   '1280': {
-    slidesPerView: 11,
+    slidesPerView: 9,
     spaceBetween: 20,
   },
   '1024': {
-    slidesPerView: 9,
+    slidesPerView: 8,
     spaceBetween: 18,
   },
   '768': {
@@ -40,17 +36,17 @@ const breakpoints = {
     spaceBetween: 16,
   },
   '530': {
-    slidesPerView: 5,
-    spaceBetween: 15,
+    slidesPerView: 6,
+    spaceBetween: 10,
   },
   '0': {
-    slidesPerView: 3,
-    spaceBetween: 15,
+    slidesPerView: 5,
+    spaceBetween: 10,
   },
 };
 
 const CategoryGridBlock: React.FC<CategoriesProps> = ({
-  className = 'md:pt-3 lg:pt-0 3xl:pb-2 mb-12 sm:mb-14 md:mb-16 xl:mb-24 2xl:mb-16',
+  className = 'md:pt-3 lg:pt-0 3xl:pb-2 mb-12 sm:mb-14 md:mb-16 xl:mb-14 2xl:mb-1',
 }) => {
   const { width } = useWindowSize();
 
@@ -70,7 +66,8 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
       <div className="block 2xl:flex justify-center flex-wrap 3xl:-mx-3.5">
         {width! < 1536 ? (
           <Carousel
-            autoplay={false}
+            grid={{ rows: 2, fill: 'rows' }}
+            autoplay={true}
             breakpoints={breakpoints}
             buttonGroupClassName="-mt-5 md:-mt-4 lg:-mt-5"
           >
@@ -86,10 +83,13 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
                   <SwiperSlide key={`category--key-${category.id}`}>
                     <CategoryCard
                       item={category}
-                      // href={{
-                      //   pathname: ROUTES.SEARCH,
-                      //   query: { category: category.id },
-                      // }}
+                      href={{
+                        pathname: ROUTES.SEARCH,
+                        query: {
+                          'category-id': category.id,
+                          'time-slot': ['00:00:00', '22:30:00'],
+                        },
+                      }}
                     />
                   </SwiperSlide>
                 ))}
@@ -110,10 +110,13 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
             <CategoryCard
               key={`category--key-${category.id}`}
               item={category}
-              // href={{
-              //   pathname: ROUTES.SEARCH,
-              //   query: { category: category.id },
-              // }}
+              href={{
+                pathname: ROUTES.SEARCH,
+                query: {
+                  'category-id': category.id,
+                  'time-slot': ['00:00:00', '22:30:00'],
+                },
+              }}
               className="flex-shrink-0 2xl:px-3.5 2xl:w-[12.5%] 3xl:w-1/9 mb-12"
             />
           ))

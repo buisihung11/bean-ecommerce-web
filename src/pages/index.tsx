@@ -28,6 +28,7 @@ import { useSessionStorage } from 'react-use';
 import HighlightedBar from '@components/common/highlighted-bar';
 import Image from '@components/ui/image';
 import Countdown from '@components/common/countdown';
+import { Supplier } from 'src/types/supplier';
 export default function Home() {
   const [highlightedBar, setHighlightedBar] = useSessionStorage(
     'borobazar-highlightedBar',
@@ -45,6 +46,11 @@ export default function Home() {
   //     .then((res) => res.data.data)
   // );
   // console.log('filter :>> ', data);
+  const { data, isLoading } = useQuery(['suppliers'], () =>
+    http
+      .get<{ data: Supplier[] }>(`/stores/1305/suppliers`)
+      .then((res) => res.data.data)
+  );
   return (
     <>
       <HighlightedBar>
@@ -76,11 +82,15 @@ export default function Home() {
         className="hero-banner-six min-h-[400px] md:min-h-[460px] lg:min-h-[500px] xl:min-h-[650px] py-20 py:pt-24 mb-5 2xl:bg-center"
       /> */}
       <Container>
-        {/* <BundleGrid
-          className="mb-12 lg:mb-14 xl:mb-16 2xl:mb-20"
-          data={bundle}
-        /> */}
         <CategoryGridBlock />
+        {data?.map((item: Supplier) => (
+          <BundleGrid
+            key={item.id}
+            className="mb-12 lg:mb-14 xl:mb-16 2xl:mb-20"
+            supplier={item}
+          />
+        ))}
+
         <BestSellerGroceryProductFeed />
         {/* <BannerCard
           banner={banner}
